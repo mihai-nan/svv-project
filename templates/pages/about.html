@@ -1,0 +1,103 @@
+{% extends 'layouts/default.html' %}
+{% block title %}Stock Market Analysis and Prediction - About{% endblock %}
+{% block content %}
+
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('static/img/header10.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Stocky</h1>
+              <span class="subheading">A stock prediction tool to help you make the big decisions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+     <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <h2 class="section-heading">Stock Market Prediction with New Data</h2>
+                    <h3>Breif Overview:</h3>
+                    <p>The model created below is for prediction the stock prices of a Company.</p>
+                    <p>There are two datasets </p>
+                    <ol>
+                        <li>Stock Prices Dataset for Dow Jones Inc</li>
+                        <li>Top 25 headlines for everyday for the past 8 years</li>
+                    </ol>
+                    <h4>Data Quality Checks</h4>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="btn btn-danger btn-block">
+                                    As you can see below there are no outliers in any of the columns, however, some of the columns have NaN values
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                            <img src="static/img/figure1.png">
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="btn btn-danger btn-block">
+                                Plotted histograms for individual columns to see the distribution of values.
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <img src="static/img/figure2.png">
+
+                            <ol>
+                                <li><b>Plot 1</b>: Scatter plot of Stock Prices vs the Subjectivity.</li>
+                                <ul>
+                                    <li>Stock Value of 0 means the Stock Value reduced since the previous day.</li>
+                                    <li>Stock Value of 1 means the Stock Value increased or remained the same since the previous day.</li>
+                                </ul>
+                                <li><b>Plot 2</b>: Scatter plot of Stock Prices vs the Objectivity.</li>
+                                <ul>
+                                    <li>Stock Value of 0 means the Stock Value reduced since the previous day.</li>
+                                    <li>Stock Value of 1 means the Stock Value increased or remained the same since the previous day.</li>
+                                </ul>
+                                <li><b>Plot 3</b>: Histogram of Subjectivity column.</li>
+                                <ul>
+                                    <li>The x axis are the values of Subjectivity and y axis is its respective frequency.</li>
+                                    <li>The plot seems to be normally distributed.</li>
+                                </ul>
+                                <li><b>Plot 4</b>: Histogram of Objectivity column.</li>
+                                <ul>
+                                    <li>The x axis are the values of Objectivity and y axis is its respective frequency.</li>
+                                    <li>The plot seems to be normally distributed.</li>
+                                </ul>
+                            </ol>
+                        </div>
+                        <h4>Feature inspection and filtering</h4>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="btn btn-danger btn-block">
+                                    Correlation Map for features
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                <img src="static/img/figure3.png">
+                                <img src="static/img/figure4.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </article>
+     <hr>
+
+{% endblock %}

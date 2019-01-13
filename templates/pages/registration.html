@@ -1,0 +1,100 @@
+{% extends 'layouts/default.html' %}
+{% block title %}Stock Market Analysis and Prediction - Registration{% endblock %}
+{% block content %}
+
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('static/img/header2.jpg')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <h1>Stocky</h1>
+              <span class="subheading">A stock prediction tool to help you make the big decisions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- Content -->
+    <style type="text/css">
+      .center {
+    margin: auto;
+    width: 60%;
+    height: 60%;
+    border: 1px solid #73AD21;
+    padding: 10px;
+}
+
+
+    </style>
+
+    <style>
+.new-alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+<div class="w3-card-4">
+{% with messages = get_flashed_messages(category_filter=["registration_message"]) %}
+      {% if messages %}
+        {% for message in messages %}
+            <div class="new-alert">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                <strong>{{ message }}</strong>
+            </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <center>
+        <h2 class="form-heading">Sign up <a href="{{ url_for('home') }}" title="Back to homepage">
+            <i class="fa fa-home"></i></a>
+        </h2>
+    </center>
+</div>
+    </br></br>
+    <form method="post" class="form">
+        <div class="center">
+            <b>Role:
+                {{ form.role(class_ = 'form-control first-input', placeholder = form.role.label.text, required = true, autofocus = False) }}
+                Username:
+                {{ form.userid(class_ = 'form-control first-input', placeholder = form.userid.label.text, required = true, autofocus = true) }}
+                Full Name:
+                {{ form.name(class_ = 'form-control first-input', placeholder = form.name.label.text, required = true, autofocus = true) }}
+                Email:
+                {{ form.email(class_ = 'form-control', placeholder = form.email.label.text, required = true) }}
+                Password:
+                {{ form.password(class_ = 'form-control', placeholder = form.password.label.text, required = true) }}
+                Confirm Password:
+                {{ form.conf_password(class_ = 'form-control', placeholder = form.conf_password.label.text, requires = true) }}
+            </b>
+            <br>
+            <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block"  >
+        </div>
+    </form>
+</div>
+
+
+
+
+{% endblock %}
