@@ -1,8 +1,6 @@
 {% extends 'layouts/default.html' %}
 {% block title %}Stock Market Analysis and Prediction - Dashboard{% endblock %}
 {% block content %}
-
-
     <!-- Page Header -->
     <header class="masthead" style="background-image: url('static/img/header9.jpg')">
       <div class="overlay"></div>
@@ -18,5 +16,133 @@
       </div>
     </header>
 
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <h2 class="post-title">Realtime predictions</h2>
+      <div class="row no-gutters" >
+
+            <div class="col-4" id="settings-container">
+              <div class="container">
+                    <div class="row">
+                        <div class="col-lg-7 col-md-6 col-sm-8 col-xs-9 bhoechie-tab-container">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 bhoechie-tab-menu">
+                                <div class="list-group">
+                                <a href="#" class="list-group-item active text-center">
+                                    <h4 class="glyphicon glyphicon-eye-open"></h4><br/>Display Settings
+                                </a>
+                                <a href="#" class="list-group-item text-center">
+                                    <h4 class="glyphicon glyphicon-book"></h4><br/>Pretrained Models
+                                </a>
+                                <a href="#" class="list-group-item text-center">
+                                    <h4 class="glyphicon glyphicon-hdd"></h4><br/>Company Filters
+                                </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
+                                <!-- Display Settings -->
+                                <div class="bhoechie-tab-content active">
+                                    <div class="[ form-group ]">
+                                        <input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" onclick="checkSMA();"/>
+                                        <div class="[ btn-group ]">
+                                            <label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                                <span> </span>
+                                            </label>
+                                            <label for="fancy-checkbox-success" class="[ btn btn-success active ]">
+                                                Simple running average
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="[ form-group ]">
+                                        <input type="checkbox" name="fancy-checkbox-primary" id="fancy-checkbox-primary" autocomplete="off" onclick="checkEMA();"/>
+                                        <div class="[ btn-group ]">
+                                            <label for="fancy-checkbox-primary" class="[ btn btn-primary ]">
+                                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                                <span> </span>
+                                            </label>
+                                            <label for="fancy-checkbox-primary" class="[ btn btn-primary active ]">
+                                                Exponential running average
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="[ form-group ]">
+                                        <input type="checkbox" name="fancy-checkbox-success" id="fancy-checkbox-success" autocomplete="off" onclick="checkMACD();"/>
+                                        <div class="[ btn-group ]">
+                                            <label for="fancy-checkbox-success" class="[ btn btn-success ]">
+                                                <span class="[ glyphicon glyphicon-ok ]"></span>
+                                                <span> </span>
+                                            </label>
+                                            <label for="fancy-checkbox-success" class="[ btn btn-success active ]">
+                                                Moving Average Convergence Divergence
+                                            </label>
+                                        </div>
+                                    </div> -->
+
+                                    
+                                    <div class="[ form-group ]">
+                                            <input type="checkbox" name="fancy-checkbox-warning" id="fancy-checkbox-warning" autocomplete="off" onclick="checkVolume();"/>
+                                            <div class="[ btn-group ]">
+                                                <label for="fancy-checkbox-warning" class="[ btn btn-warning ]">
+                                                    <span class="[ glyphicon glyphicon-ok ]"></span>
+                                                    <span> </span>
+                                                </label>
+                                                <label for="fancy-checkbox-warning" class="[ btn btn-warning active ]">
+                                                    Volume
+                                                </label>
+                                            </div>
+                                    </div>
+
+                                    <div class="[ form-group ]">
+                                            <input type="checkbox" name="fancy-checkbox-danger" id="fancy-checkbox-danger" autocomplete="off" onclick="checkPredictions();"/>
+                                            <div class="[ btn-group ]">
+                                                <label for="fancy-checkbox-danger" class="[ btn btn-danger ]">
+                                                    <span class="[ glyphicon glyphicon-ok ]"></span>
+                                                    <span> </span>
+                                                </label>
+                                                <label for="fancy-checkbox-danger" class="[ btn btn-danger active ]">
+                                                    Predictions
+                                                </label>
+                                            </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Pretrained Models -->
+                                <div class="bhoechie-tab-content">
+                                    <div class="list-group" id="model-list">
+                                    </div>                                    
+                                </div>
+
+                                <!-- Companies -->
+                                <div class="bhoechie-tab-content">
+                                    <div class="list-group" id="company-list"></div>   
+                                </div>
+                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-8" id="graph-container"></div>
+          
+
+            <link href="static/css/graph.css" rel="stylesheet" type="text/css" media="all">
+            <link href="static/css/settings.css" rel="stylesheet" type="text/css" media="all">
+            <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+            <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+            <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+            <script src="http://d3js.org/d3.v4.min.js"></script>
+            <script src="http://techanjs.org/techan.min.js"></script>
+            
+            <script src="static/js/graph.js"></script>
+            <script src="static/js/settings.js"></script>
+
+      </div>
+    </div>
+
+  
 
 {% endblock %}
