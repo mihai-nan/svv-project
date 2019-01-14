@@ -21,7 +21,7 @@ var history_feed, predicted_feed;
 
 PREDICTION_STEPS = 30
 INITIAL_STEPS = 150
-
+DATA_SIZE = INITIAL_STEPS
 var started = false;
 
 var margin = {top: 20, right: 200, bottom: 30, left: 200},
@@ -58,11 +58,12 @@ function checkPredictions() {
         RENDER_PREDICTIONS = document.getElementById('fancy-checkbox-danger').checked
         console.log('render predictions: ' + RENDER_PREDICTIONS)
 
-        if (RENDER_PREDICTIONS) {            
+        if (RENDER_PREDICTIONS) {
+                var line_x = (width *(DATA_SIZE - PREDICTION_STEPS - 1)) / DATA_SIZE - PREDICTION_STEPS
                 svg.append("line")
-                .attr("x1", width - PREDICTION_STEPS)  //<<== change your code here
+                .attr("x1", line_x )  //<<== change your code here
                 .attr("y1", 0)
-                .attr("x2", width - PREDICTION_STEPS)  //<<== and here
+                .attr("x2", line_x)  //<<== and here
                 .attr("y2", height)
                 .style("stroke-width", 3)
                 .style("stroke", "black")
@@ -97,6 +98,10 @@ function changeCompany(name) {
 }
 
 
+function randomFloat(lower, upper) {
+        return Math.random() * (upper - lower) + lower;
+}
+
 function changeDataFeed(companyName, modelName) {
                 
         var feed_url = "static/datasample/" + modelName.toLowerCase() + "/" + companyName.toLowerCase() + ".us.txt"
@@ -115,17 +120,17 @@ function changeDataFeed(companyName, modelName) {
                 };
            
             }).sort(function(a, b) { return d3.ascending(accessor.d(a), accessor.d(b)); });
-                
+        
             predicted_feed = csv.map(function(d) {
                 return {
                     date: parseDate(d.Date),
                     
                     // TODO mihai: comment this and uncomment the other block (this changes predicted values to be extracted from Popen, Phigh, Plow, Pclose,Pvolume columns)
-                    open: +d.Open,
-                    high: +d.High,
-                    low: +d.Low,
-                    close: +d.Close,
-                    volume: +d.Volume,
+                    open: +d.Open + randomFloat(1.0, 10.0),
+                    high: +d.High+ randomFloat(1.0, 10.0),
+                    low: +d.Low+ randomFloat(1.0, 10.0),
+                    close: +d.Close+ randomFloat(1.0, 10.0),
+                    volume: +d.Volume+ randomFloat(1.0, 10.0),
                     
                 //     open: +d.Popen,
                 //     high: +d.Phigh,
@@ -341,6 +346,7 @@ function redraw(data) {
                     newData = history_feed.slice(0, data.length + 1)
             }
         }
+        DATA_SIZE = newData.length
         redraw(newData);
     }, 1000); // Randomly pick an interval to update the chart
 }
